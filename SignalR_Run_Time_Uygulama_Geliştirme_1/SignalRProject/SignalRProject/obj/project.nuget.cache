@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "dgSpecHash": "gosXoAMsDYAe4vAvYucSJJ746SyLWngQoDGuDXJ3CLzoRBbaTiDd1NReH1ijrfkoCTH/FDtwaI/Dno27Rv23ww==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\HP\\source\\repos\\SignalRProject\\SignalRProject\\SignalRProject.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\HP\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.17\\microsoft.netcore.app.host.win-x64.5.0.17.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1803",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "You are running the 'restore' operation with an 'HTTP' source, 'http://172.16.31.10/nugetserver/nuget'. Non-HTTPS access will be removed in a future version. Consider migrating to an 'HTTPS' source."
+    }
+  ]
+}
