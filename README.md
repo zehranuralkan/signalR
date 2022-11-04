@@ -18,5 +18,18 @@ Böylece uygulamalar server’dan sayfa yenilemeksizin data transferini sağlam�
 #SignalR Nasıl Çalışır
 SignalR, ‘Hub’ ismi verilen merkezi bir yapı üzerinden şekillenmektedir. ‘Hub özünde bir class’dı ve içeriisnde tanımlanan bir metoda subscribe olan tüm clientlar ilgili hub üzerinden iletilen mesajları alacaktır. 
 
+#OTOMATİK BAĞLANTI KONFİGÜRASYONU 
+SignalR vasıtasıyla client ve server arasında eşzamanlı bir etkileşim sağlanmaya çalışırken
+1-	Bağlantının kurulamama 
+2-	Var olan bağlantının süreç içerisinde kopabilme 
+Bu gibi durumlarda bağlantının yeniden kurulmasıdır. Kurulum yapılmadıysa kurulum için talep gönderilmesi gerekir. 
+withAutomaticReconnect Fonksiyonuyla Kopan Bağlantıyı Yeniden Denemek: Bu yöntem bağlantı kopar kopmaz reconnect olmayı dener. Yani sıfırıncı saniyede. Ardından eğer bağlantı sağlanmazsa iki saniye, sağlanmazsa on, sağlanmazsa otuz saniye olarak dört periyotta talepleri yapar.
+
+#DURUM EVENTLERİ
+1-onreconnecting: Yeniden bağlanma girişimlerini başlatmadan önce tetiklenen event’tir.
+2-onreconnected: Yeniden bağlantı gerçekleştiğinde tetiklenen fonksiyondur.
+3-onclose: Yeniden bağlantı girişimlerinin sonuçsuz kaldığı durumlarda fırlatılır.
+
+
 
 
