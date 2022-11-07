@@ -30,6 +30,25 @@ withAutomaticReconnect Fonksiyonuyla Kopan Bağlantıyı Yeniden Denemek: Bu yö
 2-onreconnected: Yeniden bağlantı gerçekleştiğinde tetiklenen fonksiyondur.
 3-onclose: Yeniden bağlantı girişimlerinin sonuçsuz kaldığı durumlarda fırlatılır.
 
+#Clientlar tarafında Hublara Yapılan Bağlantıları Yönetmek:
+Bağlantı olayları SignalR kütüphanesinde server kanadında kullandığımız fonksiyonel yapılanmadır. Sisteme herhangi bir client bağlantı sağlandığında sistem tarafından bir event gerçekleştirilir. Bu olay sayesinde bütün client’lara haber verebiliyorsun. Sisteme clientlar tarafından bağlantı sahip olduğunda eventler aracılığıyla sistemi belli amaçlarla çalıştırabiliyoruz.
+Sisteme bir client dahil olduğunda tetiklenen olay onConnectedAsync
+Sistemden bir client ayrıldığında tetiklenen olay onDisconnectedAsync
+*Bağlantı olayları signalR uygulamalarında loglama için oldukça elverişli fonksiyonlardır.
+*ConnectionId: Hub’a bağlantı gerçekleştiren client’lara sistem tarafından verilen, unique bir değerdir. Amacı, clientlar’ı birbirinden ayırmadır. 
+
+#BAĞLI OLAN TÜM CLIENT’LARI LİSTELEME
+Bağlantı olan tüm clientları koleksiyona atıp, bu koleksiyonu tüm clientlara göndererek. Bağlantısı kopan client’ları ilgili koleksiyondan çıkartıp güncellemesini sağlarız.
+
+#IHUBCONTEXT
+1-IHubContext: Çalıştığımız projelerde WebSocket kullanıyorsak business mantığında bazen socket işlemlerine ihtiyacımız olabilir. Bu durumlarda hub sınıflarını iş mantıklarında kullanamayız. İş mantığında, ya da diğer katmanlarda buradaki çalışmayı hub’ın dışına almamız gerekir. Server’a bağlı clientlara ileti göndermeye yönelik çalışmaları hub sınıfından soyutlamamızı sağlayan ve böylece ileti gönderimini hub dışı kontrol haline getirmemizi sağlayan interface’dir. Bu interface sayesinde hub’ı başka bir sınıflarda kullanamıyorsak ya da iş mantığına dahil edemiyorsak IHubContext sayesinde ilgili hub’ın dışa karşı sorumluluğunu verebiliyorsun. Hub’daki çalışmaları, sorumlulukları, hub’daki web socket operasyonlarını normal sınıflara taşıyabilmekte ve operasyonlar gerçekleştirebilmekte.
+Artıları
+-İş mantığında websocket işlemlerini gerçekleştirmemizi sağlar.
+- Controllerlarda gelen requestin neticesinde real time bir şekilde websocket üzerinden client’lara çalışma yapmamız gerektiğinde controllerda direkt tetikleyebilecek özellik sağlar
+-Web uygulamalarında design pettern’lar üzerinden de webSocket operasyonlarını kullanılabilir.
+
+#STRONGLY TYPED HUBS
+SignalR ve bunun gibi birden fazla sistemin iletişim kurduğu uygulamalarda kullanılan özelliktir. Yazılım uygulamalarında sistemler arası haberleşmeleri yahut ortak tanımlamaları metinsel/statik değerler üzerinden sağlamaya çalışmak, olası hata yapma ihtimallerini arttırmakta ve böylece sisteme ister istemez ekstra bir zorluk kazandırmaktadır. Strong Typed Hubs özelliği ile türü kesin belirlenmiş hublar tanımlanarak, metinsel yapılanmanın yarattığı handikaplardan bir nebze olsun arınabilmeyi ve client’ta tetiklenecek olan metot bildiriminin server’da derleme zamanındaki denetimini etkinleştirmeyi sağlayabiliriz.
 
 
 
