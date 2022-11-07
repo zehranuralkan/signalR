@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SignalRProject.Business;
 using SignalRProject.Hubs;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,9 @@ namespace SignalRProject
             .AllowCredentials()
             .SetIsOriginAllowed(origin=>true)
             ));
+            services.AddTransient<MyBusiness>();
             services.AddSignalR();
+            services.AddControllers();
 
         }
 
@@ -60,6 +63,7 @@ namespace SignalRProject
             {
             //https://localhost:44307/
                 endpoints.MapHub<MyHub>("/myhub");
+                endpoints.MapControllers();
             });
         }
     }
